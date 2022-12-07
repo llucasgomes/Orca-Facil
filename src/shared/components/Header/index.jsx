@@ -7,6 +7,9 @@ export const Header = () => {
       <h2>Orca Facil</h2>
       <div>
         <ul>
+          <Link to="/dashboard" className="link">
+            Home
+          </Link>
           <Link to="/perfil" className="link">
             Perfil
           </Link>
