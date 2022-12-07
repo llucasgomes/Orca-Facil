@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, Chip } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function CardOrcamento() {
+export default function CardOrcamento({ empresa }) {
   return (
     <Link to="/perfil" className="linkCard">
-      <Card sx={{ maxWidth: 170 }}>
-        <CardActionArea sx={{ maxWidth: 170 }}>
+      <Card sx={{ maxWidth: 270, height: 270 }}>
+        <CardActionArea sx={{ maxWidth: 270 }}>
           <CardMedia
             component="img"
             height="90"
@@ -19,20 +19,16 @@ export default function CardOrcamento() {
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              Totalplasts asdasd asdas
+              {empresa}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Pedido:0045
-              <Chip
-                label="primary"
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
             </Typography>
           </CardContent>
         </CardActionArea>
+        <Chip label="success" color="success" />
       </Card>
+      <Chip label="primary" color="primary" />
     </Link>
   );
 }

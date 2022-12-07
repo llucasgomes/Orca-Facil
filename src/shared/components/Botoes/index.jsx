@@ -1,6 +1,7 @@
 import { Btn_criarLogin, Btn_login } from "./styled";
 import { Link } from "react-router-dom";
 
+
 export const Botao = () => {
   return (
     <Btn_login>
