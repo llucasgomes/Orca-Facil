@@ -10,14 +10,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Avatar } from "@mui/material";
+import { CaretRight } from "phosphor-react";
+//  imgPerfil from "https://cdn.pixabay.com/photo/2016/12/21/00/36/woman-1921883_960_720.jpg";
 
 export default function SideBar() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+  const [state, setState] = React.useState(true);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -33,22 +33,53 @@ export default function SideBar() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{ width: 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem
+          key="Home"
+          disablePadding
+          sx={{ height: 112, margin: "auto" }}
+        >
+          <Avatar
+            alt="Remy Sharp"
+            src="https://cdn.pixabay.com/photo/2016/12/21/00/36/woman-1921883_960_720.jpg"
+            sx={{ width: 80, height: 80, margin: "auto" }}
+          />
+        </ListItem>
+        <ListItem key="Home" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <Link className="linkSidebar" to="/dashboard">
+              <ListItemText primary="Dashboard" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="Perfil" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <Link className="linkSidebar" to="/perfil">
+              <ListItemText primary="Perfil" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="Clientes" disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <Link className="linkSidebar" to="/clientes">
+              <ListItemText primary="Clientes" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
       </List>
       <Divider />
       <List>
@@ -68,19 +99,23 @@ export default function SideBar() {
 
   return (
     <div>
-      {["left", "right", "top", "bottom"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+      {
+        <>
+          <Button onClick={toggleDrawer("left", true)}>
+            <MenuIcon sx={{ fontSize: 40, color: "#171717" }} />
+            <CaretRight size={32} color="#171717" weight="bold" />
+          </Button>
+
           <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
+            anchor="left"
+            open={state["left"]}
+            onClose={toggleDrawer("left", false)}
+            onOpen={toggleDrawer("left", true)}
           >
-            {list(anchor)}
+            {list("left")}
           </SwipeableDrawer>
-        </React.Fragment>
-      ))}
+        </>
+      }
     </div>
   );
 }
