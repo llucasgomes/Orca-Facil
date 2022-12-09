@@ -1,23 +1,11 @@
 import { ContainerHeader } from "./styled";
-import { Link } from "react-router-dom";
+import SideBar from "../SideBar";
 
 export const Header = () => {
   return (
     <ContainerHeader>
+      <SideBar />
       <h2>Orca Facil</h2>
-      <div>
-        <ul>
-          <Link to="/dashboard" className="link">
-            Home
-          </Link>
-          <Link to="/perfil" className="link">
-            Perfil
-          </Link>
-          <Link to="/clientes" className="link">
-            Clientes
-          </Link>
-        </ul>
-      </div>
     </ContainerHeader>
   );
 };
